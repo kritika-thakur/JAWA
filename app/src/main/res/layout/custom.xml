@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvname"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/image"
+            android:text="jsafbghdjsfghbdkjsfgbh sifhsldekifhlskedfghlikdefghikdelhrsgklsdriisedrrgoir"
+            />
+        <TextView
+            android:id="@+id/textv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvname"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/image"
+            android:text="jsafbghdjsfghbdkjsfgbh sifhsldekifhlskedfghlikdefghikdelhrsgklsdriisedrrgoir"
+            android:layout_toLeftOf="@+id/favchck"
+            android:layout_toStartOf="@+id/favchck" />
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize=".5"
+            android:rating="5"
+            android:layout_below="@+id/textv"
+            android:layout_marginLeft="16dp"
+            android:id="@+id/ratingbar"
+            style="?android:attr/ratingBarStyleSmall"
+            />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/blankheart"
+            android:id="@+id/favchck" />
+    </RelativeLayout>
+    <fragment
+        android:id="@+id/map_view"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="300dp"
+        android:layout_margin="20dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        tools:context=".ResultsActivity" />
+</LinearLayout>

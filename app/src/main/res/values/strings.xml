@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">Just A Walk Away</string>
+    <string name="title_activity_slidenav">Home</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="sports_array">
+        <item>ATM</item>
+        <item>Airport</item>
+        <item>Accounting</item>
+        <item>Aquarium</item>
+        <item>Amusement Park</item>
+        <item>Art Gallery</item>
+        <item>Bank</item>
+        <item>Book Store</item>
+        <item>Bus Station</item>
+        <item>Bakery</item>
+        <item>Bar</item>
+        <item>Beauty Salon</item>
+        <item>Bicycle Store</item>
+        <item>Bowling alley</item>
+        <item>Cafe</item>
+        <item>Car Repair</item>
+        <item>Camp Groundr</item>
+        <item>Car Dealer</item>
+        <item>Car Rental</item>
+        <item>Car Wash</item>
+        <item>Casino</item>
+        <item>Cemetry</item>
+        <item>Church</item>
+        <item>City Hall</item>
+        <item>Clothing Store</item>
+        <item>Convenience Store</item>
+        <item>Court House</item>
+        <item>Dentist</item>
+        <item>Department Store</item>
+        <item>Doctor</item>
+        <item>Electrician</item>
+        <item>Electronics Store</item>
+        <item>Embassy</item>
+        <item>Fire Station</item>
+        <item>Florist</item>
+        <item>Funeral Home</item>
+        <item>Furniture Store</item>
+        <item>Gas Station</item>
+        <item>Gym</item>
+        <item>Hospital</item>
+        <item>Hair Care</item>
+        <item>Hardware Store</item>
+        <item>Hindu Temple</item>
+        <item>Home Goods Store</item>
+        <item>Insurance agency</item>
+        <item>Jewellery Store</item>
+        <item>Library</item>
+        <item>Laundary</item>
+        <item>Lawyer</item>
+        <item>Liquor Store</item>
+        <item>Local Government Office</item>
+        <item>Locksmith</item>
+        <item>Lodging</item>
+        <item>Meal Delivery</item>
+        <item>Meal Takeaway</item>
+        <item>Mosque</item>
+        <item>Movie Rental</item>
+        <item>Movie Theatre</item>
+        <item>Moving Company</item>
+        <item>Museum</item>
+        <item>Night Club</item>
+        <item>Painter</item>
+        <item>Park</item>
+        <item>Pet Store</item>
+        <item>Physiotherapist</item>
+        <item>Plumber</item>
+        <item>Post Office</item>
+        <item>Pharmacy</item>
+        <item>Police</item>
+        <item>Restaurant</item>
+        <item>Roofing Contractor</item>
+        <item>RV Park</item>
+        <item>School</item>
+        <item>Shoe Store</item>
+        <item>Shopping Mall</item>
+        <item>Spa</item>
+        <item>Store</item>
+        <item>Stadium</item>
+        <item>Storage</item>
+        <item>Subway Station</item>
+        <item>Synagogue</item>
+        <item>Subway Station</item>
+        <item>Train Station</item>
+
+    </string-array>
+    <string name="title_activity_selectitem">Add your needs</string>
+    <string name="title_activity_results">Your Needs nearby</string>
+
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">New to town?</string>
+    <string name="slide_1_desc">The easiest way to search your favourite restaurant nearby and mark favorite !</string>
+
+    <string name="slide_2_title">Firm up your need table</string>
+    <string name="slide_2_desc">Choose what you want here!</string>
+
+    <string name="slide_3_title">Set notifications</string>
+    <string name="slide_3_desc">Want to update needs in another location, set notifications!</string>
+
+
+</resources>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gradient_background"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="?attr/colorPrimary"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"/>
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            android:background="@color/gradient_background"
+            android:id="@+id/card1"
+            android:layout_marginTop="70dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#f6f6f6"
+                android:elevation="5dp"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Set your distance"
+                    android:textSize="20dp"
+                    android:textColor="#128c7e"
+                    android:id="@+id/radius_head"/>
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/radius_head"
+                    android:background="#128c7e" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/radius_head"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="16dp"
+                    android:id="@+id/default_text"
+                    android:text="Default Radius"/>
+
+                <RelativeLayout
+                    android:layout_width="70dp"
+                    android:layout_height="125dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_below="@+id/divider"
+                    android:id="@+id/r1"
+                    android:layout_toRightOf="@+id/default_text">
+                    <NumberPicker
+                        android:theme="@android:style/Theme.Dialog"
+                        android:id="@+id/numberPicker1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:solidColor="@color/black"
+                        android:descendantFocusability="blocksDescendants"/>
+                </RelativeLayout>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_toRightOf="@+id/r1"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/spinner_bg"
+                    android:layout_below="@+id/radius_head"
+                    android:id="@+id/range_meters">
+                </Spinner>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card1"
+            android:elevation="5dp"
+            android:background="@color/gradient_background"
+            android:layout_marginTop="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#f6f6f6"
+                android:elevation="5dp"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Notifications"
+                    android:textSize="20dp"
+                    android:textColor="#128c7e"
+                    android:id="@+id/notification" />
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/notification"
+                    android:background="#128c7e" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider2"
+                    android:text="Default"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/default_notification"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@+id/default_notification"
+                    android:text="(On Location Change)"/>
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/notification"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/spinner_bg"
+                    android:layout_toRightOf="@id/default_notification"
+                    android:id="@+id/location_change">
+                </Spinner>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+<!--
+</android.support.v7.widget.CardView>-->

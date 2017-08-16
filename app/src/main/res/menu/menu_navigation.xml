@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/blank"
+            android:title=""/>
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/home"/>
+        <item
+            android:id="@+id/create_table"
+            android:title="CreateTable"
+            android:icon="@drawable/listings"/>
+        <item
+            android:id="@+id/my_needs"
+            android:title="My Needs"
+            android:icon="@drawable/places_nearby"/>
+        <item
+            android:id="@+id/my_favorites"
+            android:title="My Favourites"
+            android:icon="@drawable/blackheart"/>
+    </group>
+</menu>

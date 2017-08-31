@@ -8,24 +8,20 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
         <activity
             android:name=".WelcomeActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Slidenav"
             android:label="@string/title_activity_slidenav">
@@ -36,15 +32,13 @@
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".Selectitem"
-            android:label="@string/title_activity_selectitem"/>
+            android:label="@string/title_activity_selectitem" />
         <activity
             android:name=".ResultsActivity"
-            android:label="@string/title_activity_results"/>
+            android:label="@string/title_activity_results" />
         <activity android:name=".MyNeeds" />
-        <activity
-            android:name=".FavouritesList" />
-        <activity
-            android:name=".Settings" />
+        <activity android:name=".FavouritesList" />
+        <activity android:name=".Settings" />
 
         <service android:name=".MyAlarmService">
             <intent-filter>
@@ -62,8 +56,17 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".MapWindowClick" />
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".BaseActivity" />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PlaceCategoriesActivity"></activity>
     </application>
 
 </manifest>

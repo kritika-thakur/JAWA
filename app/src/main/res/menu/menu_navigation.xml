@@ -10,7 +10,7 @@
             android:icon="@drawable/home"/>
         <item
             android:id="@+id/create_table"
-            android:title="CreateTable"
+            android:title="Add Needs"
             android:icon="@drawable/listings"/>
         <item
             android:id="@+id/my_needs"

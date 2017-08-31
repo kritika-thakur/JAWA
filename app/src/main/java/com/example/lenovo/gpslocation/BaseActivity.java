@@ -1,12 +1,15 @@
 package com.example.lenovo.gpslocation;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -36,11 +40,11 @@ public class BaseActivity extends AppCompatActivity implements MenuItem.OnMenuIt
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
       //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         drawerMenu = navigation_view.getMenu();
         for(int i = 0; i < drawerMenu.size(); i++) {
             drawerMenu.getItem(i).setOnMenuItemClickListener(this);
         }
+
 
     }
     public void goSet(MenuItem v)
@@ -106,6 +110,19 @@ public class BaseActivity extends AppCompatActivity implements MenuItem.OnMenuIt
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.options, menu);
+
+        MenuItem v=(MenuItem)menu.findItem(R.id.action_search);
+        PackageManager packageManager = this.getPackageManager();
+        try {
+            ActivityInfo info = packageManager.getActivityInfo(this.getComponentName(), 0);
+            if(info.name.equals("com.example.lenovo.gpslocation.Slidenav"))
+            {
+                v.setVisible(true);
+            }else
+                v.setVisible(false);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
         return super.onCreateOptionsMenu(menu);
     }
     @Override
@@ -124,7 +141,7 @@ public class BaseActivity extends AppCompatActivity implements MenuItem.OnMenuIt
     public boolean onMenuItemClick(MenuItem item) {
             int id = item.getItemId();
             if (id == R.id.create_table) {
-                Intent intent = new Intent(BaseActivity.this,Selectitem.class);
+                Intent intent = new Intent(BaseActivity.this,PlaceCategoriesActivity.class);
                 startActivity(intent);
             }
             else if (id == R.id.home)  {
@@ -132,7 +149,7 @@ public class BaseActivity extends AppCompatActivity implements MenuItem.OnMenuIt
                 startActivity(intent);
             }
             else if (id == R.id.my_needs)  {
-                Intent intent = new Intent(BaseActivity.this,MyNeeds.class);
+                Intent intent = new Intent(BaseActivity.this,ResultsActivity.class);
                 startActivity(intent);
             }
             else if (id == R.id.my_favorites)  {

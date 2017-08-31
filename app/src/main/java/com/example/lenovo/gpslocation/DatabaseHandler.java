@@ -20,7 +20,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
     String password;
     // Database Version
-    private static final int DATABASE_VERSION = 17;
+    private static final int DATABASE_VERSION = 14;
     // Database Name
     private static final String DATABASE_NAME = "Mydatabase.db";
     // Contacts table name
@@ -74,7 +74,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             + KEY_PLACE_ICON + " BLOB NOT NULL," + KEY_PLACE_RATING + " REAL," + KEY_FAVOURITES + " INTEGER," + KEY_LATITUDE + " TEXT unique," + KEY_MARKER_COLOR + " TEXT ," + KEY_LONGITUDE + " TEXT " + ")";
 
     public static final String CREATE_CATEGORY_TABLE="CREATE TABLE " + TABLE_NEW_CATEGORY + "("
-            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NEW_CATEGORY + " TEXT ," + KEY_MARKER_COLOR + " TEXT ,"  + KEY_CATEGORY_IMAGE + " INTEGER " + ")";
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NEW_CATEGORY + " TEXT ,"+ KEY_CAT_TYPE + " TEXT ," + KEY_MARKER_COLOR + " TEXT ,"  + KEY_CATEGORY_IMAGE + " INTEGER " + ")";
 
     public static final String CREATE_ADD_CATEGORY="CREATE TABLE " + TABLE_ADD_CATEGORY + "("
             + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_INSERT_CATEGORY + " TEXT NOT NULL,"
@@ -145,10 +145,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         long result= db.insert(TABLE_ADD_CATEGORY, null, contentValues);
         db.close();
     }
-    public void addToCategory(String categoryItems, int color) {
+    public void addToCategory(String categoryItems,String cat_type, int color) {
         SQLiteDatabase db = this.getWritableDatabase();
         //INSERT INTO COMPANY (NAME)VALUES ('Paul');
-        db.execSQL("INSERT INTO "+ TABLE_NEW_CATEGORY+"("+KEY_NEW_CATEGORY+","+KEY_MARKER_COLOR+")"+" VALUES ('"+categoryItems+"','"+color+"');");
+        db.execSQL("INSERT INTO "+ TABLE_NEW_CATEGORY+"("+KEY_NEW_CATEGORY+","+KEY_MARKER_COLOR+","+KEY_CAT_TYPE+")"+" VALUES ('"+categoryItems+"','"+color+"','"+cat_type+"');");
         db.close();
     }
     public void addIngCategories(String name,String type, boolean checked) {
@@ -167,6 +167,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("UPDATE add_category SET cat_checked = '"+checkedOrNot+"' WHERE insert_category = '"+category+"'");
         db.close();
     }
+
     public void addtomarkerdata(String mar_place,double mar_lat,double mar_lon,String mar_cat){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("INSERT INTO "+ TABLE_ADD_MARKER_DATA+"("+KEY_MARKER_PLACE+","+KEY_MARKER_LAT+","+KEY_MARKER_LONG+","+KEY_MARKER_CAT+")"+" VALUES ('"+mar_place+"','"+mar_lat+"','"+mar_lon+"','"+mar_cat+"');");
@@ -184,6 +185,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getReadableDatabase();
         db.execSQL("delete from "+TABLE_NEW_CATEGORY +" WHERE "+KEY_ID+"='"+Id+"'");
+    }
+    public void delete_needfromSelectedTable(String cat)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("delete from "+TABLE_SELECTED_DATA +" WHERE "+KEY_CATEGORY+"='"+cat+"'"+" AND favourites = 0");
     }
     //db.update(DatabaseHandler.TABLE_SELECTED_DATA, values,null, null);
     public Cursor getData(String sql){

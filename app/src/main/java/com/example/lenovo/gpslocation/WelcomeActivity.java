@@ -75,7 +75,10 @@ public class WelcomeActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchHomeScreen();
+                //launchHomeScreen();
+                Intent intent=new Intent(WelcomeActivity.this,Selectitem.class);
+                intent.putExtra("FirstTime",true);
+                startActivity(intent);
             }
         });
 
@@ -101,7 +104,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     Intent intent=new Intent(WelcomeActivity.this,Settings.class);
                     intent.putExtra("FirstBaar",true);
                     startActivity(intent);
-                    //launchHomeScreen();
+                  //  launchHomeScreen();
                 }
             }
         });
@@ -153,7 +156,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent=new Intent(WelcomeActivity.this,Selectitem.class);
                 intent.putExtra("FirstTime",true);
                 startActivity(intent);
-
             }else {
                 // still pages are left
                 btnNext.setText(getString(R.string.next));
@@ -219,4 +221,5 @@ public class WelcomeActivity extends AppCompatActivity {
             container.removeView(view);
         }
     }
+
 }

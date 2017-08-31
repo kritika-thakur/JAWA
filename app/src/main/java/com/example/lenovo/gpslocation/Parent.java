@@ -13,6 +13,8 @@ public class Parent {
     private ArrayList<Float> mArrayRate;
     private ArrayList<String> mArrayName;
     private ArrayList<String> mArrayImage;
+    private int cat_color, ID;
+
 
     public String getTitle() {
         return mTitle;
@@ -25,6 +27,18 @@ public class Parent {
     }
     public void setArrayChildren(ArrayList<String> arrayChildren) {
         mArrayChildren = arrayChildren;
+    }
+    public int getMarker_Color() {
+        return cat_color;
+    }
+    public int getID() {
+        return ID;
+    }
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    public void setMarker_Color(int cat_color) {
+        this.cat_color = cat_color;
     }
     public ArrayList<Float> getArrayRate(){
         return mArrayRate;

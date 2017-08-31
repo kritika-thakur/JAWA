@@ -58,7 +58,7 @@
                     android:id="@+id/r1"
                     android:layout_toRightOf="@+id/default_text">
                     <NumberPicker
-                        android:theme="@android:style/Theme.Dialog"
+                        android:theme="@style/AppTheme.Picker"
                         android:id="@+id/numberPicker1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

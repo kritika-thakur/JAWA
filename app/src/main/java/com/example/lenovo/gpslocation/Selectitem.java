@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -83,9 +84,9 @@ public class Selectitem extends BaseActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectitem);
         db = new DatabaseHandler(Selectitem.this, null, null, 21);
-
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         listView = (ListView) findViewById(R.id.list1);
-        button = (Button) findViewById(R.id.testbutton);
+        //button = (Button) findViewById(R.id.testbutton);
         search = (EditText) findViewById(R.id.search);
         add_item = (Button) findViewById(R.id.add_item);
         add_item.setOnClickListener(this);
@@ -211,7 +212,7 @@ public class Selectitem extends BaseActivity implements OnClickListener {
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setAdapter(myAdapter);
         listView.setTextFilterEnabled(true);
-       // arr_temp.addAll(foos);
+        // arr_temp.addAll(foos);
         cursor = getApplicationContext().getContentResolver().query(Uri.parse("android-app://com.example.lenovo.gpslocation"), null, null, null, null);
 
         alreadychecked();
@@ -257,15 +258,15 @@ public class Selectitem extends BaseActivity implements OnClickListener {
                     categories = foos.get(position).category_name;
                     type= foos.get(position).cat_type;
 
-                    Global g = Global.getInstance();
+                    /*Global g = Global.getInstance();
                     float data=g.getData();
-                    URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=1000&type="+type+"&sensor=true&key=AIzaSyAxGdWYQ4wzVFzAXehZpeV-2t7GuOSL5q4";
+                    Log.d("BOOMBOOM Radius: ",""+data);*/
+                    URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=100&type="+type+"&sensor=true&key=AIzaSyAxGdWYQ4wzVFzAXehZpeV-2t7GuOSL5q4";
                     Lines.add(categories);
-                    db.delete_SelectItemTable();
                     loadRecyclerViewData(context,categories,URL,db,lattList,langList,item);
                     try{
                        // Toast.makeText(Selectitem.this,"color"+getRandomColor(),Toast.LENGTH_SHORT).show();
-                        db.addToCategory(categories,getRandomColor());
+                        db.addToCategory(categories,type,getRandomColor());
                     }
                     catch(SQLiteConstraintException ex){
                         //what ever you want to do
@@ -279,7 +280,7 @@ public class Selectitem extends BaseActivity implements OnClickListener {
         };
         // Setting the ItemClickEvent listener for the listview
         listView.setOnItemClickListener(itemClickListener);
-        button.setOnClickListener(this);
+       // button.setOnClickListener(this);
         getIndexList(foos);
         displayIndex();
         foos.clear();
@@ -318,53 +319,18 @@ public class Selectitem extends BaseActivity implements OnClickListener {
     public void onClick(View v) {
         switch(v.getId())
         {
-            case R.id.testbutton:
-                Bundle bundle = getIntent().getExtras();
-                if (bundle!=null) {
-                    if(bundle.containsKey("FirstTime")){
-                        boolean asdf = bundle.getBoolean("FirstTime");
-                        if(asdf)
-                        {
-                            super.onBackPressed();
-                        }
-                    }
-                } else {
-                    Log.i("BOOMBOOM Log", "FirstTime is null");
-                    SparseBooleanArray checked = listView.getCheckedItemPositions();
-                    ArrayList<String> selectedItems = new ArrayList<>();
-                    ArrayList<String> types = new ArrayList<>();
-                    for (int i = 0; i < checked.size(); i++) {
-                        // Item position in adapter
-                        int position = checked.keyAt(i);
-                        if (checked.valueAt(i))
-                            selectedItems.add(myAdapter.getItem(position).category_name);
-                        types.add(myAdapter.getItem(position).cat_type);
-                    }
-
-                    String[] outputStrArr = new String[selectedItems.size()];
-                    String[] outStrArr = new String[selectedItems.size()];
-                    for (int i = 0; i < selectedItems.size(); i++) {
-                        outputStrArr[i] = selectedItems.get(i);
-                        outStrArr[i]=types.get(i);
-                    }
-                    Intent intent = new Intent(getApplicationContext(),
-                            ResultsActivity.class);
-                    // Create a bundle object
-                    Bundle b = new Bundle();
-                    b.putStringArray("selectedItems", outputStrArr);
-                    b.putStringArray("catTypes", outStrArr);
-                    intent.putExtras(b);
-                    startActivity(intent);
-                }
-                break;
             case R.id.add_item:
                 cat = search.getText().toString().replaceFirst(" ","_").toLowerCase().trim();
-                db.addIngCategories(search.getText().toString(),cat,false);
-                foos.add(new category_model(search.getText().toString(),cat,false));
-                Toast.makeText(Selectitem.this, search.getText()+ " is added successfully.", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(getIntent());
-
+                if(search.getText().toString().trim().equals("")){
+                    Toast.makeText(Selectitem.this, "Please add something", Toast.LENGTH_SHORT).show();
+                }else
+                {
+                    db.addIngCategories(search.getText().toString(),cat,false);
+                    foos.add(new category_model(search.getText().toString(),cat,false));
+                    Toast.makeText(Selectitem.this, search.getText()+ " is added successfully.", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(getIntent());
+                }
                 break;
         }
 
@@ -380,12 +346,13 @@ public class Selectitem extends BaseActivity implements OnClickListener {
             public void onResponse(String response) {
                 progressDialog.dismiss();
                 try {
+                    Log.d("Response ",response.toString());
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray array = jsonObject.getJSONArray("results");
 
                     if(array.length()==0)
                     {
-                        Toast.makeText(context, "No Results found!!", Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(context, "No Results found!!"+ , Toast.LENGTH_SHORT).show();
                     }else
                     {
                         Cursor cursor =db.getData("select latitude,longitude from selected_data");
@@ -415,6 +382,12 @@ public class Selectitem extends BaseActivity implements OnClickListener {
                             item.setFavourites(0);
                             item.setLatitude(Double.parseDouble(jsonOb.getString("lat")));
                             item.setLongitude(Double.parseDouble(jsonOb.getString("lng")));
+                            cursor =db.getData("select marker_color from store_category WHERE new_category = '"+categories+"'");
+                            if (cursor != null && cursor.moveToFirst()) {
+                                do {
+                                    item.setMarkerColor(cursor.getInt(0));
+                                } while (cursor.moveToNext());
+                            }
                             if(lattList.contains(item.getLatitude())||(langList.contains(item.getLongitude())))
                             {
                                 Log.d("Lat found ","data : "+item.getPlace_name());
@@ -444,6 +417,20 @@ public class Selectitem extends BaseActivity implements OnClickListener {
     }
     @Override
     public void onBackPressed() {
+
+                Bundle bundle = getIntent().getExtras();
+                if (bundle!=null) {
+                    if(bundle.containsKey("FirstTime")){
+                        boolean asdf = bundle.getBoolean("FirstTime");
+                        if(asdf)
+                        {
+                            super.onBackPressed();
+                        }
+                    }
+                } else {
+                    Log.i("BOOMBOOM Log", "FirstTime is null");
+                }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -504,5 +491,10 @@ public class Selectitem extends BaseActivity implements OnClickListener {
             indexLayout.addView(textView);
         }
     }
-
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
 }

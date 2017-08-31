@@ -1,42 +1,25 @@
 package com.example.lenovo.gpslocation;
 
-import android.content.Intent;
-import android.content.res.AssetManager;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TableRow;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 public class MyNeeds extends BaseActivity{
     public static DatabaseHandler db;
     private RecyclerView Items_show;
     private RecyclerView.Adapter adapter;
-    private List<RecyclerViewListItems> recyclerlistItems;
-    ArrayList<RecyclerViewListItems> android_version = new ArrayList<>();
+    private List<NeedsModel> recyclerlistItems;
+    ArrayList<NeedsModel> android_version = new ArrayList<>();
     Cursor cursor;
     RelativeLayout mainlayout;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -64,7 +47,7 @@ public class MyNeeds extends BaseActivity{
         if (cursor != null && cursor.moveToFirst()) {
             do {
             //    Toast.makeText(this, "My Needs: "+name +"  "+marker_color, Toast.LENGTH_SHORT).show();
-                RecyclerViewListItems androidVersion = new RecyclerViewListItems();
+                NeedsModel androidVersion = new NeedsModel();
                 androidVersion.setID(cursor.getInt(0));
                 androidVersion.setAndroid_version_name(cursor.getString(1));
                 androidVersion.setMarker_Color(cursor.getInt(2));
@@ -80,7 +63,7 @@ public class MyNeeds extends BaseActivity{
 
        /* adapter = new RecyclerViewAdapter(recyclerlistItems,getApplicationContext());
         Items_show.setAdapter(adapter);*/
-        DataAdapter adapter = new DataAdapter(getApplicationContext(),android_version);
+        MyNeedsAdapter adapter = new MyNeedsAdapter(getApplicationContext(),android_version);
         Items_show.setAdapter(adapter);
     }
     @Override
@@ -89,5 +72,10 @@ public class MyNeeds extends BaseActivity{
         return true;
     }
 
-
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
 }

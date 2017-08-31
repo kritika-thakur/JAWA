@@ -8,20 +8,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.squareup.picasso.Picasso;
-import org.w3c.dom.Text;
+
 import java.util.List;
 /**
  * Created by Lenovo on 6/4/2017.
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private List<RecyclerViewListItems> recyclerlistItems;
+    private List<NeedsModel> recyclerlistItems;
     private Context context;
-    public RecyclerViewAdapter(List<RecyclerViewListItems> recyclerlistItems, Context context) {
+    public RecyclerViewAdapter(List<NeedsModel> recyclerlistItems, Context context) {
         this.recyclerlistItems = recyclerlistItems;
         this.context = context;
     }
@@ -35,7 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final RecyclerViewListItems recyclerlistItem = recyclerlistItems.get(position);
+        final NeedsModel recyclerlistItem = recyclerlistItems.get(position);
         holder.category.setText(recyclerlistItem.getHead());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -34,7 +34,7 @@ import java.util.TimerTask;
 
 public class Settings extends AppCompatActivity {
     Spinner range_meters,location_change;
-    String[] radius = {"5","10","20"};
+    String[] radius = {"5","10","20","50","100"};
     String[] range = {"km","miles","meters"};
     String[] location_time = {"10 min","30 min","1 hr","2 hr","5 hr","24 hr"};
     NumberPicker numberpicker1;
@@ -96,7 +96,8 @@ public class Settings extends AppCompatActivity {
         }
         value = numberpicker1.getValue();
         notifying_time= Float.parseFloat(radius[value]);
-
+        Global gl = Global.getInstance();
+        gl.setData(notifying_time);
 
         SharedPreferences sharedPre= getSharedPreferences("myprefer", 0);
         distance = sharedPre.getString("distance", null);
@@ -115,15 +116,15 @@ public class Settings extends AppCompatActivity {
                 switch(range[+position])
                 {
                     case "km":
-                        radius= new String[]{"5", "10", "20"};
+                        radius= new String[]{"5","10","20","50","100"};;
                         numberpicker1.setMaxValue(radius.length-1);
                         break;
                     case "miles":
-                        radius= new String[]{"5", "10", "20"};
+                        radius= new String[]{"5","10","20","50","100"};;
                         numberpicker1.setMaxValue(radius.length-1);
                         break;
                     case "meters":
-                        radius= new String[]{"100", "200", "500"};
+                        radius= new String[]{"50","100", "200", "500","1000"};
                         numberpicker1.setMaxValue(radius.length-1);
                         break;
                 }
@@ -201,12 +202,12 @@ public class Settings extends AppCompatActivity {
             if(measureUnit.equals("km"))
             {
                 notifying_time= Float.parseFloat(radius[value]);
-                notifying_time=(float) (notifying_time * 0.621371);
+                notifying_time=(float) (notifying_time *100 );//0.621371
                 Toast.makeText(getApplicationContext(),"You have selected km "+radius[value]+" "+measureUnit,Toast.LENGTH_LONG).show();
             }else if(measureUnit.equals("meters"))
             {
                 notifying_time= Float.parseFloat(radius[value]);
-                notifying_time=(float) (notifying_time * 0.000621371);
+                notifying_time=(float) (notifying_time * 100);//0.000621371
                 Toast.makeText(getApplicationContext(),"You have selected m "+radius[value]+" "+measureUnit,Toast.LENGTH_LONG).show();
             }else if(measureUnit.equals("miles"))
             {
@@ -237,6 +238,7 @@ public class Settings extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
     @Override
     public void onBackPressed()
     {
@@ -254,5 +256,11 @@ public class Settings extends AppCompatActivity {
                 Log.i("BOOMBOOM Log_Settings", "FirstBaar is null");
             }
         super.onBackPressed();
+    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
     }
 }

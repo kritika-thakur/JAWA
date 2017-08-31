@@ -13,21 +13,20 @@
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="16dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/image"
+            android:layout_toLeftOf="@+id/favchck"
             android:text="jsafbghdjsfghbdkjsfgbh sifhsldekifhlskedfghlikdefghikdelhrsgklsdriisedrrgoir"
             />
         <TextView
             android:id="@+id/textv"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvname"
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@+id/image"
             android:text="jsafbghdjsfghbdkjsfgbh sifhsldekifhlskedfghlikdefghikdelhrsgklsdriisedrrgoir"
-            android:layout_toLeftOf="@+id/favchck"
-            android:layout_toStartOf="@+id/favchck" />
+            android:layout_toLeftOf="@+id/favchck" />
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

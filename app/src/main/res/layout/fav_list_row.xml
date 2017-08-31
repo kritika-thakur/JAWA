@@ -15,6 +15,7 @@
         android:textColor="@color/title"
         android:textSize="16dp"
         android:textStyle="bold"
+        android:layout_marginTop="6dp"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/btn_del"
         android:layout_width="match_parent"
@@ -36,6 +37,7 @@
         android:stepSize=".5"
         android:rating="5"
         android:id="@+id/year"
+        android:layout_marginBottom="10dp"
         style="?android:attr/ratingBarStyleSmall"
         />
     <ImageView
@@ -46,5 +48,11 @@
         android:layout_alignParentRight="true"
         android:elevation="5dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/dele" />
+        android:src="@drawable/org_img" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/divider_fav"
+        android:background="#FDA32B"
+        android:layout_below="@+id/year"/>
 </RelativeLayout>
